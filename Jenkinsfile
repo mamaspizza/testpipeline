@@ -6,6 +6,10 @@ node {
     try {
        stage('Test'){
            echo 'Test'
+           script{
+            File yaml = new File("test.yaml")
+            println yaml.text   
+           }
        }
     }
     catch (err) {
