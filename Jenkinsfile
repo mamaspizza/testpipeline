@@ -7,6 +7,7 @@ node {
        stage('Test'){
            echo 'Test'
            script{
+            print(env.WORKSPACE)
             File yaml = new File("test.yaml")
             println yaml.text   
            }
