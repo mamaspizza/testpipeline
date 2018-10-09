@@ -22,7 +22,7 @@ node {
             // Read write YAML
             def yaml = readYaml file: fullp
             yaml.Type = "Oracle"
-            writeYaml file "new.yaml", data: yaml
+            writeYaml file: "new.yaml", data: yaml
            }
        }
     }
