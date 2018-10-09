@@ -17,10 +17,11 @@ node {
             print(fullp)
             File raw = new File(fullp)
             print(raw.text)
-            
+            raw.text.replaceFirst("Type: PostgreSQL", "Type: Oracle")
+            print(raw.text)
             // Read write YAML
-            def yaml = readYaml file: fullp
-            print(yaml.text)
+            //def yaml = readYaml file: fullp
+            //print(yaml.text)
            }
        }
     }
