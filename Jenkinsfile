@@ -42,8 +42,12 @@ node {
             yaml['Database']['Port'] = db_info['port']
             yaml['Database']['User'] = db_info['userName']
             yaml['Database']['Password'] = db_info['password']
-            print (yaml.Database['Test Me'])
+            
             writeYaml file: "new.yaml", data: yaml
+            
+            // Read write YAML
+            def n_yaml = readYaml file: "new.yaml"
+            print (n_yaml.Database['Test Me'])
             
             url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$instance_id"
             response = httpRequest httpMode: "DELETE", url: "$url"
