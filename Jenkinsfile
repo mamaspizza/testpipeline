@@ -1,8 +1,5 @@
 node {
-
-
     currentBuild.result = "SUCCESS"
-
     try {
        stage('Test'){
            echo 'Test'
@@ -19,10 +16,9 @@ node {
             writeYaml file: "new.yaml", data: yaml
             
             // try to get docker information
-            url = "http://192.168.23.124:8080/api/v1/docker/container/all"
-            def client = new RESTClient(url)
-            def response = client.get()
-            print(response.data)
+            def response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/container/all'
+            print("Status: "+response.status)
+            print("Content: "+response.content)
            }
        }
     }
