@@ -11,7 +11,7 @@ node {
             def fullpath = "$env.WORKSPACE\\$filename"
            
             // Read write YAML
-            def yaml = readYaml file: fullpath
+            def yaml = readYaml file: filename
             def response
             def url
             // Get DockerID
