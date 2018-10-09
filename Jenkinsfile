@@ -15,13 +15,11 @@ node {
             print(filename)
             def fullp = "$env.WORKSPACE\\$filename"
             print(fullp)
-            File yaml = new File(fullp)
-            print(yaml.text)
-            def newType = "Oracle"
-            yaml.text = yaml.text.replaceFirst(/Type: '.*'/, "Type: '${newType}'")
-            print(yaml.text)
-            newType = "PostgreSQL"
-            yaml.text = yaml.text.replaceFirst(/Type: '.*'/, "Type: '${newType}'")
+            File raw = new File(fullp)
+            print(raw.text)
+            
+            // Read write YAML
+            def yaml = readYaml file: fullp
             print(yaml.text)
            }
        }
