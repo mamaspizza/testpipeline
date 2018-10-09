@@ -49,7 +49,7 @@ node {
             def n_yaml = readYaml file: "new.yaml"
             print (n_yaml.Database['Test Me'])
             
-               url = "http://${docker_hostname}:${docker_port}/api/v1/docker/container/${instance_id}}"
+               url = "http://${docker_hostname}:${docker_port}/api/v1/docker/container/${instance_id}"
                response = httpRequest httpMode: "DELETE", url: "${url}"
            }
        }
