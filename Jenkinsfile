@@ -21,7 +21,8 @@ node {
             //print(raw.text)
             // Read write YAML
             def yaml = readYaml file: fullp
-            print(yaml.text)
+            yaml.Type = "Oracle"
+            writeYaml file "new.yaml", data: yaml
            }
        }
     }
