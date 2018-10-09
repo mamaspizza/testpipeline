@@ -19,7 +19,7 @@ node {
             response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/images/all'
             def baseImages = readJSON text:response.content
             def docker_id
-            print yaml.Database.Type
+ 
             def docker_desc = mapDB[yaml.Database.Type]
             for (def img: baseImages){
                 print(docker_desc)
@@ -27,10 +27,12 @@ node {
                 if ( docker_desc == img['description']) {
                   docker_id = img['id']  
                 }
-            }            
-            response = httpRequest httpMode: 'POST', url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id', requestBody: "{\"keepForHours\": 2}"
-                        
-            response = httpRequest httpMode: 'DELETE', url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id'
+            }
+            def url = "http://192.168.23.124:8080/api/v1/docker/container/$docker_id"
+            print(url)
+            response = httpRequest httpMode: 'POST', url: $url, requestBody: "{\"keepForHours\": 2}"
+            
+            response = httpRequest httpMode: 'DELETE', url: $url
             //writeYaml file: "new.yaml", data: yaml
            }
        }
