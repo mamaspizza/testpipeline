@@ -42,7 +42,7 @@ node {
             yaml.Database.Port = db_info['port']
             yaml.Database.User = db_info['userName']
             yaml.Database.Password = db_info['password']
-            print (yaml.Database.Test Me)
+            print (yaml.Database['Test Me'])
             writeYaml file: "new.yaml", data: yaml
             
             url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$instance_id"
