@@ -11,7 +11,11 @@ node {
             def yaml = readYaml file: fullp
             
             // Create DB
-            
+            def response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/images/all'
+            def baseImage = readJSON text:response.content
+               for (String img: baseImages){
+                    print img
+               }
             
             // try to get docker information
             def response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/container/all'
