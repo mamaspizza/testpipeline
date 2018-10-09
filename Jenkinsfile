@@ -21,7 +21,7 @@ node {
                 , Oracle: "docker.io/oraclelinux:latest"
                 , SQLServer: "mcr.microsoft.com/mssql/server:latest"]
             url = "http://$docker_hostname:$docker_port/api/v1/docker/images/all"
-            response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/images/all'
+            response = httpRequest "$url"
             def baseImages = readJSON text:response.content
             def docker_id
  
@@ -34,7 +34,7 @@ node {
                 }
             }
             url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$docker_id"
-            print $url
+            print(url)
             // Add docker Image
             response = httpRequest httpMode: 'POST', url: $url, requestBody: "{\"keepForHours\": 2}"
             def db_info = readJSON text:response.content
