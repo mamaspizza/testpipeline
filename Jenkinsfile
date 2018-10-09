@@ -4,12 +4,10 @@ node {
        stage('Test'){
            echo 'Test'
            script{
-            writeFile file: "database.yaml", text: "Type: PostgreSQL"
-            def filename = "test.yaml"
-            print(filename)
+            def filename = "database.yaml"
+            writeFile file: "$filename", text: "Type: PostgreSQL"            
             def fullp = "$env.WORKSPACE\\$filename"
             print(fullp)
-               
             // Read write YAML
             def yaml = readYaml file: fullp
             yaml.Type = "Oracle"
