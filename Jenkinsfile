@@ -10,7 +10,7 @@ node {
             print(env.WORKSPACE)
             // File yaml = new File("test.yaml")
             // println yaml.text   
-            writFile file: "output.txt", "Some text"
+            writeFile file: "output.txt", "Some text"
            }
        }
     }
