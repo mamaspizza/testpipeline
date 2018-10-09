@@ -15,6 +15,7 @@ node {
             
             // try to get docker information
             def response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/container/all'
+            print("Requested")
             print("Status: "+response.status)
             def json = response.content
             print('j')
