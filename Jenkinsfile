@@ -26,7 +26,7 @@ node {
             def baseImages = readJSON text:response.content
             def docker_id
  
-            def docker_desc = mapDB[yaml.Database.Type]
+            def docker_desc = mapDB["sqlserver"]
             for (def img: baseImages){
                 print(docker_desc)
                 print(img['description'])
