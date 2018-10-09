@@ -33,7 +33,9 @@ node {
                , url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id'
                , requestBody: "{\"keepForHours\": 2}"
                         
-            
+            response = httpRequest 
+                httpMode: 'DELETE'
+               , url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id'
             //writeYaml file: "new.yaml", data: yaml
            }
        }
