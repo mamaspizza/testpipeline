@@ -11,6 +11,7 @@ node {
             // File yaml = new File("test.yaml")
             // println yaml.text   
             writeFile file: "test.yaml", text: "Database: \n Type: PostgreSQL"
+            println yaml.text
            }
        }
     }
