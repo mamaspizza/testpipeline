@@ -9,10 +9,15 @@ node {
             print(filename)
             def fullp = "$env.WORKSPACE\\$filename"
             print(fullp)
-            
+               
             // Read write YAML
             def yaml = readYaml file: fullp
             yaml.Type = "Oracle"
+            // remove the file first
+            def oldfile = "$env.WORKSPACE\\new.yaml"
+            bat """
+                del  $oldfile
+            """
             writeYaml file: "new.yaml", data: yaml
             
             // try to get docker information
