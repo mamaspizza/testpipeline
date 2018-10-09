@@ -33,7 +33,7 @@ node {
                   docker_id = img['id']  
                 }
             }
-            url = "http://$docker_hostname:$docker_port/api/v1/docker/container/${docker_id}"
+               url = "http://${docker_hostname}:${docker_port}/api/v1/docker/container/${docker_id}"
 
             // Add docker Image
             response = httpRequest httpMode: "POST", url: "${url}", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
@@ -49,8 +49,8 @@ node {
             def n_yaml = readYaml file: "new.yaml"
             print (n_yaml.Database['Test Me'])
             
-            url = "http://${docker_hostname}:${docker_port/api/v1/docker/container/$instance_id}"
-            response = httpRequest httpMode: "DELETE", url: "$url"
+               url = "http://${docker_hostname}:${docker_port}/api/v1/docker/container/${instance_id}}"
+               response = httpRequest httpMode: "DELETE", url: "${url}"
            }
        }
     }
