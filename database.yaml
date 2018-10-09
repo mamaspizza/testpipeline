@@ -1,0 +1,7 @@
+Database:
+   Type: PostgreSQL96
+   Server: 192.168.23.124
+   Port: 5433
+   Name: Apollo
+   User: me
+   Password: me
