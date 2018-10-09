@@ -20,7 +20,7 @@ node {
                 , "postgresql105": "docker.io/postgres:10.5"
                 , "oracle": "docker.io/oraclelinux:latest"
                 , "sqlserver": "mcr.microsoft.com/mssql/server:latest"]
-            print(mapDB["sqlserver"])
+
             url = "http://${docker_hostname}:${docker_port}/api/v1/docker/images/all"
             response = httpRequest "${url}"
             def baseImages = readJSON text:response.content
@@ -34,7 +34,7 @@ node {
                   docker_id = img['id']  
                 }
             }
-               url = "http://${docker_hostname}:${docker_port}/api/v1/docker/container/${docker_id}"
+            url = "http://${docker_hostname}:${docker_port}/api/v1/docker/container/${docker_id}"
 
             // Add docker Image
             response = httpRequest httpMode: "POST", url: "${url}", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
