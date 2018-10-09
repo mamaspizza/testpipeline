@@ -39,7 +39,7 @@ node {
             response = httpRequest httpMode: "POST", url: "$url", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
             def db_info = readJSON text:response.content
             def instance_id = db_info['id']
-            yaml['Database.Port'] = db_info['port']
+            yaml['Database']['Port'] = db_info['port']
             yaml.Database.User = db_info['userName']
             yaml.Database.Password = db_info['password']
             print (yaml.Database['Test Me'])
