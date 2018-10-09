@@ -8,7 +8,7 @@ node {
             def docker_hostname = "192.168.23.124"
             def docker_port = "8080"
             def filename = "database.yaml"
-            def fullpath = "$env.WORKSPACE\\$filename"
+            def fullpath = "${env.WORKSPACE}\\${filename}"
            
             // Read write YAML
             def yaml = readYaml file: filename
@@ -20,8 +20,8 @@ node {
                 , PostgreSQL98: "docker.io/postgres:10.5"
                 , Oracle: "docker.io/oraclelinux:latest"
                 , SQLServer: "mcr.microsoft.com/mssql/server:latest"]
-            url = "http://$docker_hostname:$docker_port/api/v1/docker/images/all"
-            response = httpRequest "$url"
+            url = "http://${docker_hostname}:${docker_port}/api/v1/docker/images/all"
+            response = httpRequest "${url}"
             def baseImages = readJSON text:response.content
             def docker_id
  
@@ -33,10 +33,10 @@ node {
                   docker_id = img['id']  
                 }
             }
-            url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$docker_id"
+            url = "http://$docker_hostname:$docker_port/api/v1/docker/container/${docker_id}"
 
             // Add docker Image
-            response = httpRequest httpMode: "POST", url: "$url", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
+            response = httpRequest httpMode: "POST", url: "${url}", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
             def db_info = readJSON text:response.content
             def instance_id = db_info['id']
             yaml['Database']['Port'] = db_info['port']
@@ -49,7 +49,7 @@ node {
             def n_yaml = readYaml file: "new.yaml"
             print (n_yaml.Database['Test Me'])
             
-            url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$instance_id"
+            url = "http://${docker_hostname}:${docker_port/api/v1/docker/container/$instance_id}"
             response = httpRequest httpMode: "DELETE", url: "$url"
            }
        }
