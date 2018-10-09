@@ -34,7 +34,7 @@ node {
                 }
             }
             url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$docker_id"
-            print(url)
+
             // Add docker Image
             response = httpRequest httpMode: "POST", url: "$url", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
             def db_info = readJSON text:response.content
