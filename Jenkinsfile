@@ -11,7 +11,7 @@ node {
             // File yaml = new File("test.yaml")
             // println yaml.text   
             writeFile file: "test.yaml", text: "Database: \n Type: PostgreSQL"
-            File yaml = new File("./test.yaml")
+            File yaml = new File("$env.WORKSPACE\test.yaml")
             println yaml.text
            }
        }
