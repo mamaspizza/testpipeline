@@ -16,10 +16,11 @@ node {
             def url
             // Get DockerID
             def mapDB = [
-                PostgreSQL96: "docker.io/postgres:9.6"
-                , PostgreSQL98: "docker.io/postgres:10.5"
-                , Oracle: "docker.io/oraclelinux:latest"
-                , SQLServer: "mcr.microsoft.com/mssql/server:latest"]
+                "postgresql96": "docker.io/postgres:9.6"
+                , "postgresql105": "docker.io/postgres:10.5"
+                , "oracle": "docker.io/oraclelinux:latest"
+                , "sqlserver": "mcr.microsoft.com/mssql/server:latest"]
+            print(mapDB["sqlserver"])
             url = "http://${docker_hostname}:${docker_port}/api/v1/docker/images/all"
             response = httpRequest "${url}"
             def baseImages = readJSON text:response.content
