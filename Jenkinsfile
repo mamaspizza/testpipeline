@@ -17,6 +17,8 @@ node {
             print(fullp)
             File yaml = new File(fullp)
             print(yaml.text)
+            def newType = "Oracle"
+            yaml.text = yaml.text.replaceFirst(/Type: '.*'/, "Type: '${newType}'")
            }
        }
     }
