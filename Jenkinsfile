@@ -12,8 +12,8 @@ node {
             def response
             // Create DB
             response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/images/all'
-            def baseImage = readJSON text:response.content
-            print(baseImage)
+            def baseImages = readJSON text:response.content
+            print(baseImages)
             for (String img: baseImages){
                println img
             }
