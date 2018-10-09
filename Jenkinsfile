@@ -17,7 +17,7 @@ node {
             def response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/container/all'
             print("Status: "+response.status)
             def json = response.content
-            print($json)
+            print('j')
             print(json['userName'])
             
             
