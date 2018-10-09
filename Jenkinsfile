@@ -36,13 +36,13 @@ node {
             url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$docker_id"
             print(url)
             // Add docker Image
-            response = httpRequest httpMode: 'POST', url: "$url", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
+            response = httpRequest httpMode: "POST", url: "$url", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
             def db_info = readJSON text:response.content
             yaml.Database.Port = db_info['port']
             yaml.Database.User = db_info['userName']
             yaml.Database.Password = db_info['password']
             writeYaml file: "new.yaml", data: yaml
-            response = httpRequest httpMode: 'DELETE', url: $url
+            response = httpRequest httpMode: "DELETE", url: "$url"
            }
        }
     }
