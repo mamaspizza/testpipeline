@@ -28,14 +28,9 @@ node {
                   docker_id = img['id']  
                 }
             }            
-            response = httpRequest 
-                httpMode: 'POST'
-               , url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id'
-               , requestBody: "{\"keepForHours\": 2}"
+            response = httpRequest httpMode: 'POST', url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id', requestBody: "{\"keepForHours\": 2}"
                         
-            response = httpRequest 
-                httpMode: 'DELETE'
-               , url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id'
+            response = httpRequest httpMode: 'DELETE', url: 'http://192.168.23.124:8080/api/v1/docker/container/$docker_id'
             //writeYaml file: "new.yaml", data: yaml
            }
        }
