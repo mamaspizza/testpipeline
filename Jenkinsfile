@@ -19,7 +19,7 @@ node {
                 "postgresql96": "docker.io/postgres:9.6"
                 , "postgresql105": "docker.io/postgres:10.5"
                 , "oracle": "docker.io/oraclelinux:latest"
-                , "sqlserver": "mcr.microsoft.com/mssql/server:latest"]
+                , "sqlserver": "mcr.microsoft.com/mssql/server:2017-latest"]
 
             url = "http://${docker_hostname}:${docker_port}/api/v1/docker/images/all"
             response = httpRequest "${url}"
