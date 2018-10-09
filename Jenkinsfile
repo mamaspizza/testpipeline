@@ -14,9 +14,9 @@ node {
             response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/images/all'
             def baseImage = readJSON text:response.content
             print(baseImage)
-               for (String img: baseImages){
-                    println img
-               }
+            for (String img: baseImages){
+               println img
+            }
             
             // try to get docker information
             response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/container/all'
