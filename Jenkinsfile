@@ -19,6 +19,10 @@ node {
             print(yaml.text)
             def newType = "Oracle"
             yaml.text = yaml.text.replaceFirst(/Type: '.*'/, "Type: '${newType}'")
+            print(yaml.text)
+            newType = "PostgreSQL"
+            yaml.text = yaml.text.replaceFirst(/Type: '.*'/, "Type: '${newType}'")
+            print(yaml.text)
            }
        }
     }
