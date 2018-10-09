@@ -13,6 +13,7 @@ node {
             // Read write YAML
             def yaml = readYaml file: fullpath
             def response
+            def url
             // Get DockerID
             def mapDB = [
                 PostgreSQL96: "docker.io/postgres:9.6"
@@ -32,7 +33,7 @@ node {
                   docker_id = img['id']  
                 }
             }
-            def url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$docker_id"
+            url = "http://$docker_hostname:$docker_port/api/v1/docker/container/$docker_id"
             print $url
             // Add docker Image
             response = httpRequest httpMode: 'POST', url: $url, requestBody: "{\"keepForHours\": 2}"
