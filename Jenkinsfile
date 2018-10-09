@@ -10,7 +10,7 @@ node {
             print(env.WORKSPACE)
             // File yaml = new File("test.yaml")
             // println yaml.text   
-            writeFile file: "output.txt", text: "Some text"
+            writeFile file: "test.yaml", text: "Database: \n Type: PostgreSQL"
            }
        }
     }
