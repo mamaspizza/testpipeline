@@ -6,16 +6,16 @@ node {
            script{
             def filename = "database.yaml"
             def fullp = "$env.WORKSPACE\\$filename"
-            print(fullp)
+
             // Read write YAML
             def yaml = readYaml file: fullp
             def response
             // Create DB
             response = httpRequest 'http://192.168.23.124:8080/api/v1/docker/images/all'
             def baseImages = readJSON text:response.content
-            print(baseImages)
-            for (String img: baseImages){
-               println img
+
+            for (def img: baseImages){
+               println img['id']
             }
             
             // try to get docker information
