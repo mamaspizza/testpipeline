@@ -13,7 +13,9 @@ node {
             writeFile file: "test.yaml", text: "Database: \n Type: PostgreSQL"
             def filename = "test.yaml"
             print(filename)
-            File yaml = new File("$env.WORKSPACE\$filename")
+            def fullp = "$env.WORKSPACE\\$filename"
+            print(fullp)
+            File yaml = new File(fullp)
             print(yaml.text)
            }
        }
