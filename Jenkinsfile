@@ -15,8 +15,8 @@ node {
             def response
             // Get DockerID
             def mapDB = [
-                PostgreSQL96: "docker.io/postgres:9.4"
-                , PostgreSQL98: "docker.io/postgres:latest"
+                PostgreSQL96: "docker.io/postgres:9.6"
+                , PostgreSQL98: "docker.io/postgres:10.5"
                 , Oracle: "docker.io/oraclelinux:latest"
                 , SQLServer: "mcr.microsoft.com/mssql/server:latest"]
             url = "http://$docker_hostname:$docker_port/api/v1/docker/images/all"
