@@ -7,22 +7,22 @@ node {
        stage('Test'){
            echo 'Test'
            script{
-            print(env.WORKSPACE)
-            // File yaml = new File("test.yaml")
-            // println yaml.text   
-            writeFile file: "test.yaml", text: "Type: PostgreSQL"
+            writeFile file: "database.yaml", text: "Type: PostgreSQL"
             def filename = "test.yaml"
             print(filename)
             def fullp = "$env.WORKSPACE\\$filename"
             print(fullp)
-            //File raw = new File(fullp)
-            //print(raw.text)
-            //raw.text.replaceFirst("Type: PostgreSQL", "Type: Oracle")
-            //print(raw.text)
+            
             // Read write YAML
             def yaml = readYaml file: fullp
             yaml.Type = "Oracle"
             writeYaml file: "new.yaml", data: yaml
+            
+            // try to get docker information
+            url = "http://192.168.23.124:8080/api/v1/docker/container/all"
+            def client = new RESTClient(url)
+            def response = client.get()
+            print(response.data)
            }
        }
     }
