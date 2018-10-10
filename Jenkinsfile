@@ -9,9 +9,11 @@ node {
             def docker_port = "8080"
             def filename = "database.yaml"
             def fullpath = "${env.WORKSPACE}\\${filename}"
+            def config = "some_conf.yaml"
            
             // Read write YAML
             def yaml = readYaml file: filename
+            def confyaml = readYaml file: config
             def response
             def url
             // Get DockerID
@@ -40,6 +42,7 @@ node {
             response = httpRequest httpMode: "POST", url: "${url}", contentType: "APPLICATION_JSON", requestBody: "{\"keepForHours\": 2}"
             def db_info = readJSON text:response.content
             def instance_id = db_info['id']
+            yaml['Installation'] = confyaml['Installation']
             yaml['Database']['Port'] = db_info['port']
             yaml['Database']['User'] = db_info['userName']
             yaml['Database']['Password'] = db_info['password']
