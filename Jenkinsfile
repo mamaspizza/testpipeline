@@ -28,7 +28,7 @@ node {
             def baseImages = readJSON text:response.content
             def docker_id
  
-            def docker_desc = mapDB["sqlserver"]
+            def docker_desc = mapDB["sqlite"]
             for (def img: baseImages){
                 if ( docker_desc == img['description']) {
                   docker_id = img['id']  
