@@ -43,6 +43,7 @@ node {
             yaml['Database']['Port'] = db_info['port']
             yaml['Database']['User'] = db_info['userName']
             yaml['Database']['Password'] = db_info['password']
+            yaml['Database']['Test'] = "Test"
             
             writeYaml file: "new.yaml", data: yaml
             
