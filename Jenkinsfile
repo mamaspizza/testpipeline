@@ -20,7 +20,7 @@ node {
             def mapDB = [
                 "postgresql96": "docker.io/postgres:9.6"
                 , "postgresql105": "docker.io/postgres:10.5"
-                , "oracle": "docker.io/oraclelinux:latest"
+                , "oracle": "docker.io/wnameless/oracle-xe-11g:latest"
                 , "sqlserver": "mcr.microsoft.com/mssql/server:2017-latest"]
 
             url = "http://${docker_hostname}:${docker_port}/api/v1/docker/images/all"
@@ -28,7 +28,7 @@ node {
             def baseImages = readJSON text:response.content
             def docker_id
  
-            def docker_desc = mapDB["sqlite"]
+            def docker_desc = mapDB["oracle"]
             for (def img: baseImages){
                 if ( docker_desc == img['description']) {
                   docker_id = img['id']  
@@ -43,8 +43,8 @@ node {
                 def instance_id = db_info['id']
                 yaml['Installation'] = confyaml['Installation']
                 yaml['Database']['Port'] = db_info['port']
-                yaml['Database']['User'] = db_info['userName']
-                yaml['Database']['Password'] = db_info['password']
+                yaml['Database']['User'] = db_info['options']['userName']
+                yaml['Database']['Password'] = db_info['options']['password']
                 yaml['Database']['New'] = "This is a new attribute"
 
                 writeYaml file: "new.yaml", data: yaml
